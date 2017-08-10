@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id='box'>
+			<ul id="ul">
+				<!-- <li>
+					<img id="img" src="" alt="">
+					<p id="name"></p>
+				</li> -->
+			</ul>
+	</div>
+	<input type="text" id="ipt" value="javascript">
+	<button id="btn">click</button>
+	<script>
+		var btn = document.getElementById('btn');
+		var box = document.getElementById('box');
+		var ipt = document.getElementById('ipt');
+		var oul = document.getElementById('ul')
+		btn.onclick = function (argument) {
+			var oscript = document.createElement('script');
+			oscript.src= 'https://api.douban.com/v2/book/search?q='+ipt.value+'&callback=show1';
+			box.appendChild(oscript);
+		}
+		function show1(data){
+			var temp = "";
+			for(var i=0;i<data.books.length;i++){
+			 temp += "<li><img src="+ data.books[i].image
+			+"><p>"+ data.books[i].author+"</p></li>"
+			}
+			oul.innerHTML = temp
+		}
+	</script>
+</body>
+</html>
